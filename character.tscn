@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2rs0rmutgcv6"]
+
+[ext_resource type="Script" path="res://character.gd" id="1_6g7ao"]
+[ext_resource type="Texture2D" uid="uid://bir82wx7dm5hs" path="res://blocks_tilesheet.png" id="2_f8dwe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8r4ba"]
+atlas = ExtResource("2_f8dwe")
+region = Rect2(1239, 275, 18, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xeje7"]
+size = Vector2(16, 24)
+
+[node name="Character" type="CharacterBody2D"]
+motion_mode = 1
+safe_margin = 0.5
+script = ExtResource("1_6g7ao")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_8r4ba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xeje7")
