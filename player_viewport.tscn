@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm48hy48xc0l3"]
+
+[ext_resource type="Script" path="res://follow_camera.gd" id="1_4d2j7"]
+[ext_resource type="Script" path="res://player_viewport.gd" id="1_vvv83"]
+
+[node name="PlayerViewport" type="SubViewportContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+script = ExtResource("1_vvv83")
+
+[node name="SubViewport2" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(2500, 1200)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport2"]
+zoom = Vector2(4, 4)
+script = ExtResource("1_4d2j7")

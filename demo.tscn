@@ -1,103 +1,47 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxftwu4efodq5"]
+[gd_scene load_steps=6 format=3 uid="uid://cxftwu4efodq5"]
 
 [ext_resource type="Script" path="res://demo.gd" id="1_on8b8"]
 [ext_resource type="PackedScene" uid="uid://3ats85u78wdw" path="res://world.tscn" id="2_6g6jn"]
-[ext_resource type="Script" path="res://follow_camera.gd" id="2_bq4tl"]
+[ext_resource type="PackedScene" uid="uid://cwscf42hrdibp" path="res://split_screen.tscn" id="3_56dgo"]
 [ext_resource type="PackedScene" uid="uid://d2rs0rmutgcv6" path="res://character.tscn" id="3_x10qo"]
+[ext_resource type="PackedScene" uid="uid://cdpej5y4rgrg" path="res://flipped_character.tscn" id="5_ldl0o"]
 
 [node name="Demo" type="Node2D"]
 script = ExtResource("1_on8b8")
 
 [node name="World" parent="." instance=ExtResource("2_6g6jn")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="SplitScreen" parent="." instance=ExtResource("3_56dgo")]
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -2.0
-offset_right = -2.0
-grow_horizontal = 2
-grow_vertical = 2
-columns = 2
-
-[node name="SubViewportContainer2" type="SubViewportContainer" parent="CanvasLayer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/GridContainer/SubViewportContainer2"]
-disable_3d = true
-handle_input_locally = false
-size = Vector2i(574, 322)
-render_target_update_mode = 4
-
-[node name="Camera2D" type="Camera2D" parent="CanvasLayer/GridContainer/SubViewportContainer2/SubViewport" node_paths=PackedStringArray("target")]
-script = ExtResource("2_bq4tl")
-target = NodePath("../../../../../Character2")
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/GridContainer/SubViewportContainer"]
-disable_3d = true
-handle_input_locally = false
-size = Vector2i(574, 322)
-render_target_update_mode = 4
-
-[node name="Camera2D" type="Camera2D" parent="CanvasLayer/GridContainer/SubViewportContainer/SubViewport" node_paths=PackedStringArray("target")]
-script = ExtResource("2_bq4tl")
-target = NodePath("../../../../../Character1")
-
-[node name="SubViewportContainer3" type="SubViewportContainer" parent="CanvasLayer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/GridContainer/SubViewportContainer3"]
-disable_3d = true
-handle_input_locally = false
-size = Vector2i(574, 322)
-render_target_update_mode = 4
-
-[node name="Camera2D" type="Camera2D" parent="CanvasLayer/GridContainer/SubViewportContainer3/SubViewport" node_paths=PackedStringArray("target")]
-script = ExtResource("2_bq4tl")
-target = NodePath("../../../../../Character3")
-
-[node name="SubViewportContainer4" type="SubViewportContainer" parent="CanvasLayer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/GridContainer/SubViewportContainer4"]
-disable_3d = true
-handle_input_locally = false
-size = Vector2i(574, 322)
-render_target_update_mode = 4
-
-[node name="Camera2D" type="Camera2D" parent="CanvasLayer/GridContainer/SubViewportContainer4/SubViewport" node_paths=PackedStringArray("target")]
-script = ExtResource("2_bq4tl")
-target = NodePath("../../../../../Character4")
-
-[node name="Character1" parent="." instance=ExtResource("3_x10qo")]
+[node name="Character1" parent="SplitScreen" instance=ExtResource("3_x10qo")]
 position = Vector2(-283, 102)
 player_number = 1
 
-[node name="Character2" parent="." instance=ExtResource("3_x10qo")]
-position = Vector2(262, 64)
-player_number = 2
-
-[node name="Character3" parent="." instance=ExtResource("3_x10qo")]
+[node name="Character3" parent="SplitScreen" instance=ExtResource("3_x10qo")]
 position = Vector2(-1613, -156)
 player_number = 1
 
-[node name="Character4" parent="." instance=ExtResource("3_x10qo")]
+[node name="Character4" parent="SplitScreen" instance=ExtResource("3_x10qo")]
 position = Vector2(1854, -154)
+player_number = 2
+
+[node name="FlippedCharacter" parent="SplitScreen" instance=ExtResource("5_ldl0o")]
+position = Vector2(-1050, 198)
+player_number = 2
+
+[node name="FlippedCharacter2" parent="SplitScreen" instance=ExtResource("5_ldl0o")]
+position = Vector2(932, -290)
+player_number = 1
+
+[node name="Character2" parent="SplitScreen" instance=ExtResource("3_x10qo")]
+position = Vector2(262, 64)
+player_number = 2
+
+[node name="FlippedCharacter3" parent="SplitScreen" instance=ExtResource("5_ldl0o")]
+position = Vector2(-598, -432)
+player_number = 1
+
+[node name="Character5" parent="SplitScreen" instance=ExtResource("3_x10qo")]
+visible = false
+position = Vector2(-1268, -78)
 player_number = 2

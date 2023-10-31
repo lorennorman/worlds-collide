@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdpej5y4rgrg"]
+
+[ext_resource type="PackedScene" uid="uid://d2rs0rmutgcv6" path="res://character.tscn" id="1_11pk4"]
+[ext_resource type="Script" path="res://flipped_character.gd" id="2_lptw0"]
+
+[node name="FlippedCharacter" instance=ExtResource("1_11pk4")]
+script = ExtResource("2_lptw0")
