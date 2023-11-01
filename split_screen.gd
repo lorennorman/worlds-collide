@@ -18,7 +18,8 @@ func _ready():
     0:
       printerr("No players provided")
       return
-    1, 2, 3, 4, 5, 6, 7, 8:
+
+    1, 2, 3, 4, 5, 6, 7, 8, 9:
       # tune the grid to the task
       var grid_container := $CanvasLayer/GridContainer
       if player_count == 1: grid_container.columns = 1
@@ -26,8 +27,10 @@ func _ready():
 
       # add a viewport per player to the grid
       for player in players: add_player_viewport(player, grid_container)
+
     _:
       printerr("Too many players provided: %s" % player_count)
+      return
 
 
 func add_player_viewport(player: Node2D, container):

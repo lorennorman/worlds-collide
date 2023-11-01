@@ -17,31 +17,39 @@ script = ExtResource("1_on8b8")
 position = Vector2(-283, 102)
 player_number = 1
 
-[node name="Character3" parent="SplitScreen" instance=ExtResource("3_x10qo")]
-position = Vector2(-1613, -156)
-player_number = 1
-
-[node name="Character4" parent="SplitScreen" instance=ExtResource("3_x10qo")]
-position = Vector2(1854, -154)
-player_number = 2
-
-[node name="FlippedCharacter" parent="SplitScreen" instance=ExtResource("5_ldl0o")]
-position = Vector2(-1050, 198)
-player_number = 2
-
-[node name="FlippedCharacter2" parent="SplitScreen" instance=ExtResource("5_ldl0o")]
-position = Vector2(932, -290)
-player_number = 1
-
 [node name="Character2" parent="SplitScreen" instance=ExtResource("3_x10qo")]
 position = Vector2(262, 64)
 player_number = 2
 
+[node name="Character3" parent="SplitScreen" instance=ExtResource("3_x10qo")]
+position = Vector2(-1613, -156)
+player_number = 3
+
+[node name="Character4" parent="SplitScreen" instance=ExtResource("3_x10qo")]
+position = Vector2(1854, -154)
+player_number = 4
+
+[node name="FlippedCharacter" parent="SplitScreen" instance=ExtResource("5_ldl0o")]
+visible = false
+position = Vector2(-1050, 198)
+player_number = 2
+
+[node name="FlippedCharacter2" parent="SplitScreen" instance=ExtResource("5_ldl0o")]
+visible = false
+position = Vector2(932, -290)
+player_number = 1
+
 [node name="FlippedCharacter3" parent="SplitScreen" instance=ExtResource("5_ldl0o")]
+visible = false
 position = Vector2(-598, -432)
 player_number = 1
 
 [node name="Character5" parent="SplitScreen" instance=ExtResource("3_x10qo")]
 visible = false
 position = Vector2(-1268, -78)
+player_number = 2
+
+[node name="Character6" parent="SplitScreen" instance=ExtResource("3_x10qo")]
+visible = false
+position = Vector2(1358, 208)
 player_number = 2
