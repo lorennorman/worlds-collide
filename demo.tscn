@@ -14,19 +14,19 @@ script = ExtResource("1_on8b8")
 [node name="SplitScreen" parent="." instance=ExtResource("3_56dgo")]
 
 [node name="Character1" parent="SplitScreen" instance=ExtResource("3_x10qo")]
-position = Vector2(-283, 102)
+position = Vector2(-1889, -93)
 player_number = 1
 
 [node name="Character2" parent="SplitScreen" instance=ExtResource("3_x10qo")]
-position = Vector2(262, 64)
+position = Vector2(2074, -93)
 player_number = 2
 
 [node name="Character3" parent="SplitScreen" instance=ExtResource("3_x10qo")]
-position = Vector2(-1613, -156)
+position = Vector2(-1891, 30)
 player_number = 3
 
 [node name="Character4" parent="SplitScreen" instance=ExtResource("3_x10qo")]
-position = Vector2(1854, -154)
+position = Vector2(2076, 37)
 player_number = 4
 
 [node name="FlippedCharacter" parent="SplitScreen" instance=ExtResource("5_ldl0o")]

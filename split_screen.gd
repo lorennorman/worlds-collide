@@ -1,7 +1,5 @@
 extends Node2D
 
-#@export var players: Array[Node2D]
-
 
 func _ready():
   var children = get_children()
