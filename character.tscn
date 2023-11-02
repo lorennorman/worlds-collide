@@ -11,8 +11,9 @@ region = Rect2(1239, 275, 18, 25)
 size = Vector2(16, 24)
 
 [node name="Character" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_mask = 2
 motion_mode = 1
-safe_margin = 0.5
 script = ExtResource("1_6g7ao")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
