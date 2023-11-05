@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuiv5efrv3dw0"]
+
+[ext_resource type="PackedScene" uid="uid://d2rs0rmutgcv6" path="res://character.tscn" id="1_ro1tl"]
+
+[node name="Rippy" instance=ExtResource("1_ro1tl")]
+
+[node name="OldMan" parent="." index="1"]
+visible = false
+
+[node name="Rippy" parent="." index="3"]
+visible = true

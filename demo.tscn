@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxftwu4efodq5"]
+[gd_scene load_steps=8 format=3 uid="uid://cxftwu4efodq5"]
 
 [ext_resource type="Script" path="res://demo.gd" id="1_on8b8"]
 [ext_resource type="PackedScene" uid="uid://3ats85u78wdw" path="res://world.tscn" id="2_6g6jn"]
 [ext_resource type="PackedScene" uid="uid://cwscf42hrdibp" path="res://split_screen.tscn" id="3_56dgo"]
 [ext_resource type="PackedScene" uid="uid://d2rs0rmutgcv6" path="res://character.tscn" id="3_x10qo"]
+[ext_resource type="PackedScene" uid="uid://cuiv5efrv3dw0" path="res://rippy.tscn" id="5_jix7f"]
 [ext_resource type="PackedScene" uid="uid://cdpej5y4rgrg" path="res://flipped_character.tscn" id="5_ldl0o"]
+[ext_resource type="PackedScene" uid="uid://d0emp8yrgl115" path="res://oscar.tscn" id="6_wai60"]
 
 [node name="Demo" type="Node2D"]
 y_sort_enabled = true
@@ -23,12 +25,12 @@ player_number = 1
 [node name="SplitScreen" parent="." instance=ExtResource("3_56dgo")]
 y_sort_enabled = true
 
-[node name="Character1" parent="SplitScreen" instance=ExtResource("3_x10qo")]
-position = Vector2(-997, 69)
+[node name="Rippy" parent="SplitScreen" instance=ExtResource("5_jix7f")]
+position = Vector2(974, -68)
 player_number = 1
 
-[node name="Character2" parent="SplitScreen" instance=ExtResource("3_x10qo")]
-position = Vector2(974, -68)
+[node name="Oscar" parent="SplitScreen" instance=ExtResource("6_wai60")]
+position = Vector2(-997, 69)
 player_number = 2
 
 [node name="Character3" parent="SplitScreen" instance=ExtResource("3_x10qo")]
@@ -43,6 +45,7 @@ player_number = 4
 visible = false
 y_sort_enabled = false
 position = Vector2(-1050, 198)
+scale = Vector2(1, 1)
 collision_mask = 1
 safe_margin = 0.5
 player_number = 2
@@ -51,6 +54,7 @@ player_number = 2
 visible = false
 y_sort_enabled = false
 position = Vector2(932, -290)
+scale = Vector2(1, 1)
 collision_mask = 1
 safe_margin = 0.5
 player_number = 1
@@ -59,6 +63,7 @@ player_number = 1
 visible = false
 y_sort_enabled = false
 position = Vector2(-598, -432)
+scale = Vector2(1, 1)
 collision_mask = 1
 safe_margin = 0.5
 player_number = 1

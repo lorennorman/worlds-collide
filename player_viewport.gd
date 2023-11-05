@@ -17,5 +17,5 @@ func _ready() -> void:
 func _adjust_zoom_to_viewport():
   var min_pixels = min(sub_viewport.size.x, sub_viewport.size.y)
   # FIXME: terrible naive zoom guess from viewport size
-  var zoom_value = clamp(log(3+5 / (5 - min(min_pixels/400.0, 4.999))), 0.5, 5)
+  var zoom_value = clamp(log(5+5 / (5 - min(min_pixels/400.0, 4.999))), 0.5, 5)
   camera_2d.zoom = Vector2(zoom_value, zoom_value)
