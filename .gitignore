@@ -9,5 +9,8 @@ dist/
 .mono/
 data_*/
 
+# VSCode
+.vscode
+
 # macOS
 .DS_Store
