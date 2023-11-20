@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Worlds Collide"
-run/main_scene="res://demo.tscn"
+run/main_scene="res://root_menu.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=2500
 window/size/viewport_height=1200
+
+[gui]
+
+theme/default_theme_scale=4.0
 
 [input]
 

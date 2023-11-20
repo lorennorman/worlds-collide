@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxftwu4efodq5"]
+[gd_scene load_steps=6 format=3 uid="uid://cxftwu4efodq5"]
 
-[ext_resource type="Script" path="res://demo.gd" id="1_on8b8"]
 [ext_resource type="PackedScene" uid="uid://3ats85u78wdw" path="res://world.tscn" id="2_6g6jn"]
 [ext_resource type="PackedScene" uid="uid://cwscf42hrdibp" path="res://split_screen.tscn" id="3_56dgo"]
 [ext_resource type="PackedScene" uid="uid://d2rs0rmutgcv6" path="res://character.tscn" id="3_x10qo"]
@@ -9,7 +8,6 @@
 
 [node name="Demo" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_on8b8")
 
 [node name="World" parent="." instance=ExtResource("2_6g6jn")]
 

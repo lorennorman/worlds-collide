@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://bw0qk0fuxeoo4"]
+
+[ext_resource type="Script" path="res://root_menu.gd" id="1_c8nsp"]
+[ext_resource type="Script" path="res://menu.gd" id="1_st53d"]
+[ext_resource type="PackedScene" uid="uid://cxxahc61ohbny" path="res://quit_button.tscn" id="1_urvrv"]
+[ext_resource type="PackedScene" uid="uid://cxftwu4efodq5" path="res://demo.tscn" id="2_f1gwr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08eyh"]
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.164706, 0.164706, 0.164706, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="RootMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 2
+script = ExtResource("1_c8nsp")
+current_scene = ExtResource("2_f1gwr")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_08eyh")
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+script = ExtResource("1_st53d")
+
+[node name="Play" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Settings")
+focus_next = NodePath("../Settings")
+text = "Play"
+
+[node name="Settings" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Play")
+focus_neighbor_bottom = NodePath("../Quit")
+focus_next = NodePath("../Quit")
+focus_previous = NodePath("../Play")
+text = "Settings"
+
+[node name="Quit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_urvrv")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Settings")
+focus_previous = NodePath("../Settings")
+
+[connection signal="visibility_changed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" to="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" method="_on_visibility_changed"]
