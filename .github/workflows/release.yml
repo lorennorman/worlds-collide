@@ -24,9 +24,9 @@ jobs:
         # decompress
         unzip ${FILENAME}.zip
 
-        # add shell helpers
+        # add to path
         mkdir -p $HOME/.local/bin
-        cp $(FILENAME) $HOME/.local/bin/godot
+        cp ${FILENAME} $HOME/.local/bin/godot
         echo ::add-path::$HOME/.local/bin
 
         # test it
