@@ -32,6 +32,7 @@ jobs:
 
         # add to path
         mkdir -p $HOME/.local/bin
+        mkdir -p $HOME/.local/share/godot
         echo "$HOME/.local/bin" >> $GITHUB_PATH
         cp ${FILENAME} $HOME/.local/bin/godot
         cp -R export_templates $HOME/.local/share/godot/export_templates
