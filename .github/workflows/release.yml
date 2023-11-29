@@ -17,17 +17,24 @@ jobs:
         GODOT_VERSION="4.2-rc2"
         BUILD_PLATFORM="linux.x86_64"
         FILENAME="Godot_v${GODOT_VERSION}_${BUILD_PLATFORM}"
+        EXPORT_TEMPLATES_FILENAME="Godot_v${GODOT_VERSION}_export_templates"
 
         # download (later: cache)
+        # godot
         curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${FILENAME}.zip
+        # export templates
+        curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${EXPORT_TEMPLATES_FILENAME}.tpz
 
         # decompress
         unzip ${FILENAME}.zip
+        unzip ${EXPORT_TEMPLATES_FILENAME}.tpz -d export_templates
+        ls -la export_templates
 
         # add to path
         mkdir -p $HOME/.local/bin
         echo "$HOME/.local/bin" >> $GITHUB_PATH
         cp ${FILENAME} $HOME/.local/bin/godot
+        cp -R export_templates $HOME/.local/share/godot/export_templates
 
         # test it
         godot -h
