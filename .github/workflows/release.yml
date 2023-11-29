@@ -24,7 +24,7 @@ jobs:
         unzip ${FILENAME}.zip
 
         # add shell helpers
-        ln -s ${FILENAME}/${FILENAME} ~/godot
+        ln -s ${FILENAME} ~/godot
 
         # test it
         ./godot -h
