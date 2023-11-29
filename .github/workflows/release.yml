@@ -18,7 +18,7 @@ jobs:
         FILENAME="Godot_v${GODOT_VERSION}_${BUILD_PLATFORM}"
 
         # download (later: cache)
-        curl -L https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${FILENAME}.zip
+        curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${FILENAME}.zip
 
         # decompress
         unzip ${FILENAME}.zip
