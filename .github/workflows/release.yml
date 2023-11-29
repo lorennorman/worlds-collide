@@ -27,15 +27,15 @@ jobs:
 
         # decompress
         unzip ${FILENAME}.zip
-        unzip ${EXPORT_TEMPLATES_FILENAME}.tpz -d export_templates
-        ls -la export_templates
+        unzip ${EXPORT_TEMPLATES_FILENAME}.tpz
+        ls -la templates
 
         # add to path
         mkdir -p $HOME/.local/bin
-        mkdir -p $HOME/.local/share/godot
+        mkdir -p $HOME/.local/share/godot/export_templates/${GODOT_VERSION}
         echo "$HOME/.local/bin" >> $GITHUB_PATH
         cp ${FILENAME} $HOME/.local/bin/godot
-        cp -R export_templates $HOME/.local/share/godot/export_templates
+        cp -R templates $HOME/.local/share/godot/export_templates/${GODOT_VERSION}
 
         # test it
         godot -h
