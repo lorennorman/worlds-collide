@@ -18,13 +18,13 @@ jobs:
         FILENAME="Godot_v${GODOT_VERSION}_${BUILD_PLATFORM}"
 
         # download (later: cache)
-        curl -L -o godot.zip https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${FILENAME}.zip
+        curl -L https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${FILENAME}.zip
 
         # decompress
-        unzip godot.zip -d godot
+        unzip ${FILENAME}.zip
 
         # add shell helpers
-        ln -s godot/${FILENAME} ~/godot
+        ln -s ${FILENAME}/${FILENAME} ~/godot
 
         # test it
         ./godot -h
