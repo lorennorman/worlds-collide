@@ -32,8 +32,12 @@ jobs:
         # test it
         godot -h
 
+    - uses: actions/checkout@v3
+
     - name: Use Godot from path
-      run: godot -h
+      run: |
+        godot --headless --export-release windows
+        ls -la
 
   # build_from_linux:
   #   runs-on: ubuntu-latest
