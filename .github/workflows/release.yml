@@ -26,8 +26,8 @@ jobs:
 
         # add to path
         mkdir -p $HOME/.local/bin
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
         cp ${FILENAME} $HOME/.local/bin/godot
-        echo ::add-path::$HOME/.local/bin
 
         # test it
         godot -h
