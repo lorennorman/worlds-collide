@@ -24,11 +24,10 @@ jobs:
         unzip ${FILENAME}.zip
 
         # add shell helpers
-        # ln -s ${FILENAME} ~/godot
+        mv ${FILENAME} godot
 
         # test it
-        # ./godot -h
-        ./${FILENAME} -h
+        ./godot -h
 
   # build_from_linux:
   #   runs-on: ubuntu-latest
