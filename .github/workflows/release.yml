@@ -11,7 +11,8 @@ jobs:
   install_godot:
     runs-on: ubuntu-latest
     steps:
-    - run: |
+    - name: Download, unzip, and add Godot to path
+      run: |
         # prepare godot version and platform
         GODOT_VERSION="4.2-rc2"
         BUILD_PLATFORM="linux.x86_64"
@@ -24,10 +25,15 @@ jobs:
         unzip ${FILENAME}.zip
 
         # add shell helpers
-        mv ${FILENAME} godot
+        mkdir -p $HOME/.local/bin
+        cp $(FILENAME) $HOME/.local/bin/godot
+        echo ::add-path::$HOME/.local/bin
 
         # test it
-        ./godot -h
+        godot -h
+
+    - name: Use Godot from path
+      run: godot -h
 
   # build_from_linux:
   #   runs-on: ubuntu-latest
