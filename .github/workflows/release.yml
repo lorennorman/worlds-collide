@@ -11,7 +11,7 @@ jobs:
   install_godot:
     runs-on: ubuntu-latest
     steps:
-      - run: |
+    - run: |
         # prepare godot version and platform
         GODOT_VERSION="4.2-rc2"
         BUILD_PLATFORM="linux.x86_64"
