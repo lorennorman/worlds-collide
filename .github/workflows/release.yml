@@ -35,7 +35,7 @@ jobs:
         mkdir -p $HOME/.local/share/godot/export_templates/4.2.rc2 # ${GODOT_VERSION}
         echo "$HOME/.local/bin" >> $GITHUB_PATH
         cp ${FILENAME} $HOME/.local/bin/godot
-        cp -R templates $HOME/.local/share/godot/export_templates/4.2.rc2 # ${GODOT_VERSION}
+        cp templates/* $HOME/.local/share/godot/export_templates/4.2.rc2 # ${GODOT_VERSION}
         ls -la $HOME/.local/share/godot/export_templates/4.2.rc2
 
         # test it
