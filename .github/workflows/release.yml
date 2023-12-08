@@ -48,14 +48,14 @@ jobs:
     - name: Use Godot from path
       run: |
         mkdir dist
-        godot --headless --export-release windows
+        godot --headless --export-release linux
         ls -la dist
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: Client - Windows
-        path: dist/worlds_collide.exe
+        name: Client - Linux
+        path: dist/worlds_collide.x86_64
 
   # build_from_linux:
   #   runs-on: ubuntu-latest
