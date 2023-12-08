@@ -11,6 +11,9 @@ jobs:
   install_godot:
     name: Install Godot
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [ windows, linux ]
     steps:
     - name: Download, unzip, and add Godot to path
       run: |
@@ -48,14 +51,14 @@ jobs:
     - name: Use Godot from path
       run: |
         mkdir dist
-        godot --headless --export-release linux
+        godot --headless --export-release ${{ matrix.platform }}
         ls -la dist
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: Client - Linux
-        path: dist/worlds_collide.x86_64
+        name: Client - ${{ matrix.platform }}
+        path: dist/worlds_collide.*
 
   # build_from_linux:
   #   runs-on: ubuntu-latest
