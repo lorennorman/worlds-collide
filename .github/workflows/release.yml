@@ -52,7 +52,7 @@ jobs:
         ls -la dist
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: Client - Windows
         path: dist/worlds_collide.exe
