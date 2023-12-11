@@ -94,8 +94,8 @@ jobs:
 
         echo "about to alias"
         alias godot=`pwd`/Godot.app/Contents/MacOS/Godot
-        echo "about to which"
-        which godot
+        # echo "about to which"
+        # which godot
         echo "about to godot"
         godot -h
 
