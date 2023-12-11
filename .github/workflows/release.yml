@@ -83,31 +83,23 @@ jobs:
         curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${FILENAME}.zip
 
         # export templates
-        curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${EXPORT_TEMPLATES_FILENAME}.tpz
+        # curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${EXPORT_TEMPLATES_FILENAME}.tpz
 
         # decompress
         unzip ${FILENAME}.zip
-        unzip ${EXPORT_TEMPLATES_FILENAME}.tpz
+        # unzip ${EXPORT_TEMPLATES_FILENAME}.tpz
 
-        echo "about to Godot"
-        ./Godot.app/Contents/MacOS/Godot -h
-
-        echo "about to alias"
-        alias godot=`pwd`/Godot.app/Contents/MacOS/Godot
-        # echo "about to which"
-        # which godot
-        echo "about to godot"
-        godot -h
+        # ./Godot.app/Contents/MacOS/Godot -h
 
         # add to path
-        # mkdir -p $HOME/.local/bin
-        # mkdir -p $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
-        # echo "$HOME/.local/bin" >> $GITHUB_PATH
-        # cp ${FILENAME} $HOME/.local/bin/godot
+        mkdir -p $HOME/.local/bin
+        mkdir -p $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+        cp ./Godot.app/Contents/MacOS/Godot $HOME/.local/bin/godot
         # cp templates/* $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
 
         # test it
-        # godot -h
+        godot -h
 
       # - name: Upload Artifact
       #   uses: actions/upload-artifact@v2
