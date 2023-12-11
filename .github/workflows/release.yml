@@ -71,40 +71,43 @@ jobs:
 
     - name: Download, unzip, and add Godot to path
       run: |
-        # prepare godot version and platform
-        GODOT_VERSION="4.2-stable"
-        GODOT_EXPORT_TEMPLATES_VERSION="4.2.stable"
-        BUILD_PLATFORM="macos.universal"
-        FILENAME="Godot_v${GODOT_VERSION}_${BUILD_PLATFORM}"
-        EXPORT_TEMPLATES_FILENAME="Godot_v${GODOT_VERSION}_export_templates"
 
-        # download (later: cache)
-        # godot
-        curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${FILENAME}.zip
+        pwd
 
-        # export templates
-        curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${EXPORT_TEMPLATES_FILENAME}.tpz
+        # # prepare godot version and platform
+        # GODOT_VERSION="4.2-stable"
+        # GODOT_EXPORT_TEMPLATES_VERSION="4.2.stable"
+        # BUILD_PLATFORM="macos.universal"
+        # FILENAME="Godot_v${GODOT_VERSION}_${BUILD_PLATFORM}"
+        # EXPORT_TEMPLATES_FILENAME="Godot_v${GODOT_VERSION}_export_templates"
 
-        # decompress
-        unzip ${FILENAME}.zip
-        unzip ${EXPORT_TEMPLATES_FILENAME}.tpz
+        # # download (later: cache)
+        # # godot
+        # curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${FILENAME}.zip
 
-        ls -la $HOME
+        # # export templates
+        # curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${EXPORT_TEMPLATES_FILENAME}.tpz
 
-        # Godot.app/Contents/MacOS/Godot -h
-        alias godot=$HOME/Godot.app/Contents/MacOS/Godot
-        which godot
-        godot -h
+        # # decompress
+        # unzip ${FILENAME}.zip
+        # unzip ${EXPORT_TEMPLATES_FILENAME}.tpz
 
-        # add to path
-        # mkdir -p $HOME/.local/bin
-        # mkdir -p $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
-        # echo "$HOME/.local/bin" >> $GITHUB_PATH
-        # cp ${FILENAME} $HOME/.local/bin/godot
-        # cp templates/* $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
+        # ls -la $HOME
 
-        # test it
+        # # Godot.app/Contents/MacOS/Godot -h
+        # alias godot=$HOME/Godot.app/Contents/MacOS/Godot
+        # which godot
         # godot -h
+
+        # # add to path
+        # # mkdir -p $HOME/.local/bin
+        # # mkdir -p $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
+        # # echo "$HOME/.local/bin" >> $GITHUB_PATH
+        # # cp ${FILENAME} $HOME/.local/bin/godot
+        # # cp templates/* $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
+
+        # # test it
+        # # godot -h
 
       # - name: Upload Artifact
       #   uses: actions/upload-artifact@v2
