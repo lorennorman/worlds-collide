@@ -89,9 +89,14 @@ jobs:
         unzip ${FILENAME}.zip
         unzip ${EXPORT_TEMPLATES_FILENAME}.tpz
 
-        # Godot.app/Contents/MacOS/Godot -h
+        echo "about to Godot"
+        ./Godot.app/Contents/MacOS/Godot -h
+
+        echo "about to alias"
         alias godot=`pwd`/Godot.app/Contents/MacOS/Godot
+        echo "about to which"
         which godot
+        echo "about to godot"
         godot -h
 
         # add to path
