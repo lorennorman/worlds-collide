@@ -8,19 +8,72 @@ on:
   pull_request: {}
 
 jobs:
-  install_godot:
-    name: Install Godot
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        platform: [ windows, linux ]
+  # build_game_linux_and_windows:
+  #   name: Build for Linux & Windows
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       platform: [ windows, linux ]
+  #   steps:
+  #   - name: Download, unzip, and add Godot to path
+  #     run: |
+  #       # prepare godot version and platform
+  #       GODOT_VERSION="4.2-stable"
+  #       GODOT_EXPORT_TEMPLATES_VERSION="4.2.stable"
+  #       BUILD_PLATFORM="linux.x86_64"
+  #       FILENAME="Godot_v${GODOT_VERSION}_${BUILD_PLATFORM}"
+  #       EXPORT_TEMPLATES_FILENAME="Godot_v${GODOT_VERSION}_export_templates"
+
+  #       # download (later: cache)
+  #       # godot
+  #       curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${FILENAME}.zip
+
+  #       # export templates
+  #       curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${EXPORT_TEMPLATES_FILENAME}.tpz
+
+  #       # decompress
+  #       unzip ${FILENAME}.zip
+  #       unzip ${EXPORT_TEMPLATES_FILENAME}.tpz
+  #       ls -la templates
+
+  #       # add to path
+  #       mkdir -p $HOME/.local/bin
+  #       mkdir -p $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
+  #       echo "$HOME/.local/bin" >> $GITHUB_PATH
+  #       cp ${FILENAME} $HOME/.local/bin/godot
+  #       cp templates/* $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
+
+  #       # test it
+  #       # godot -h
+
+  #   - uses: actions/checkout@v3
+
+  #   - name: Use Godot from path
+  #     run: |
+  #       mkdir dist
+  #       godot --headless --export-release ${{ matrix.platform }}
+  #       ls -la dist
+
+  #   - name: Upload Artifact
+  #     uses: actions/upload-artifact@v3
+  #     with:
+  #       name: Client - ${{ matrix.platform }}
+  #       path: dist/worlds_collide.*
+
+
+  build_game_macos:
+    runs-on: macos-latest
     steps:
+    - uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+
     - name: Download, unzip, and add Godot to path
       run: |
         # prepare godot version and platform
         GODOT_VERSION="4.2-stable"
         GODOT_EXPORT_TEMPLATES_VERSION="4.2.stable"
-        BUILD_PLATFORM="linux.x86_64"
+        BUILD_PLATFORM="macos.universal"
         FILENAME="Godot_v${GODOT_VERSION}_${BUILD_PLATFORM}"
         EXPORT_TEMPLATES_FILENAME="Godot_v${GODOT_VERSION}_export_templates"
 
@@ -34,7 +87,6 @@ jobs:
         # decompress
         unzip ${FILENAME}.zip
         unzip ${EXPORT_TEMPLATES_FILENAME}.tpz
-        ls -la templates
 
         # add to path
         mkdir -p $HOME/.local/bin
@@ -44,52 +96,10 @@ jobs:
         cp templates/* $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
 
         # test it
-        # godot -h
+        godot -h
 
-    - uses: actions/checkout@v3
-
-    - name: Use Godot from path
-      run: |
-        mkdir dist
-        godot --headless --export-release ${{ matrix.platform }}
-        ls -la dist
-
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: Client - ${{ matrix.platform }}
-        path: dist/worlds_collide.*
-
-  # build_from_linux:
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       platform: [ windows ]
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #       with:
-  #         lfs: true
-  #     - name: Build
-  #       id: build
-  #       uses: manleydev/build-godot-action@v1.5.0
-  #       with:
-  #         name: worlds_collide
-  #         preset: ${{ matrix.platform }}
-  #         # debugMode: "true"
-  #     - name: Upload Artifact
-  #       uses: actions/upload-artifact@v2
-  #       with:
-  #         name: Client - ${{ matrix.platform }}
-  #         path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
-  ## TODO: build godot without using a container
-  # build_from_macos:
-  #   runs-on: macos-latest
-  #   steps:
-  #     - uses: maxim-lobanov/setup-xcode@v1
-  #       with:
-  #         xcode-version: latest-stable
-  #     - name: Upload Artifact
-  #       uses: actions/upload-artifact@v2
-  #       with:
-  #         name: Client - macOS
-  #         path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
+      # - name: Upload Artifact
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: Client - macOS
+      #     path: dist/worlds_collide.*
