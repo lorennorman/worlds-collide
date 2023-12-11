@@ -89,10 +89,11 @@ jobs:
         unzip ${FILENAME}.zip
         unzip ${EXPORT_TEMPLATES_FILENAME}.tpz
 
-        ls -la
+        ls -la $HOME
 
-        Godot.app/Contents/MacOS/Godot -h
-        alias godot='$HOME/Godot.app/Contents/MacOS/Godot'
+        # Godot.app/Contents/MacOS/Godot -h
+        alias godot=$HOME/Godot.app/Contents/MacOS/Godot
+        which godot
         godot -h
 
         # add to path
