@@ -98,6 +98,11 @@ jobs:
         cp ./Godot.app/Contents/MacOS/Godot $HOME/.local/bin/godot
         # cp templates/* $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
 
+        ls -la $HOME/.local/bin
+        echo $PATH
+        echo $GITHUB_PATH
+        which godot
+
         # test it
         godot -h
 
