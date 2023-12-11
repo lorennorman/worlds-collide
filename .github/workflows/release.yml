@@ -71,7 +71,6 @@ jobs:
 
     - name: Download, unzip, and add Godot to path
       run: |
-
         pwd
 
         # # prepare godot version and platform
