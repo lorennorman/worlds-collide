@@ -100,10 +100,11 @@ jobs:
 
         ls -la $HOME/.local/bin
         echo $PATH
-        echo $GITHUB_PATH
+        echo 'about to which'
         which godot
 
         # test it
+        echo 'about to godot'
         godot -h
 
       # - name: Upload Artifact
