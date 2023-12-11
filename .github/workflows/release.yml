@@ -88,15 +88,21 @@ jobs:
         unzip ${FILENAME}.zip
         unzip ${EXPORT_TEMPLATES_FILENAME}.tpz
 
+        ls -la
+
+        Godot.app/Contents/MacOS/Godot -h
+        alias godot='Godot.app/Contents/MacOS/Godot'
+        godot -h
+
         # add to path
-        mkdir -p $HOME/.local/bin
-        mkdir -p $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
-        echo "$HOME/.local/bin" >> $GITHUB_PATH
-        cp ${FILENAME} $HOME/.local/bin/godot
-        cp templates/* $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
+        # mkdir -p $HOME/.local/bin
+        # mkdir -p $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
+        # echo "$HOME/.local/bin" >> $GITHUB_PATH
+        # cp ${FILENAME} $HOME/.local/bin/godot
+        # cp templates/* $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
 
         # test it
-        godot -h
+        # godot -h
 
       # - name: Upload Artifact
       #   uses: actions/upload-artifact@v2
