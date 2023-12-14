@@ -65,9 +65,6 @@ jobs:
     name: Build for macOS
     runs-on: macos-latest
     steps:
-    # - uses: maxim-lobanov/setup-xcode@v1
-    #   with:
-    #     xcode-version: latest-stable
 
     - name: Download, unzip, and add Godot to path
       run: |
@@ -86,34 +83,20 @@ jobs:
         curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${EXPORT_TEMPLATES_FILENAME}.tpz
 
         # decompress
-        unzip ${FILENAME}.zip
-        unzip ${EXPORT_TEMPLATES_FILENAME}.tpz
+        unzip ${FILENAME}.zip Contents/MacOS/Godot
+        unzip ${EXPORT_TEMPLATES_FILENAME}.tpz macos.zip
 
-        # add to path
-        echo $HOME
-        # mkdir -p $HOME/.local/bin
-        # echo "$HOME/.local/bin" >> $GITHUB_PATH
-        mkdir -p "$HOME/Library/Application Support/Godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}"
+        # copy godot executable to a common location
         cp -R ./Godot.app $HOME
+
+        # make the templates dir and copy the ones we need there
+        mkdir -p "$HOME/Library/Application Support/Godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}"
         cp templates/macos.zip "$HOME/Library/Application Support/Godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}/macos.zip"
 
-        # godot looks here for export template:
-        # /Users/runner/Library/Application Support/Godot/export_templates/4.2.stable/macos.zip
-
         # test it
-        # $HOME/Godot.app/Contents/MacOS/Godot -h
-
-
-    # - run: |
-    #     pwd
-    #     ls -la
+        $HOME/Godot.app/Contents/MacOS/Godot -h
 
     - uses: actions/checkout@v4
-
-    # - run: |
-    #     pwd
-    #     ls -la
-
 
     - name: Use Godot.app
       run: |
