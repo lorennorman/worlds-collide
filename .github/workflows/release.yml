@@ -100,9 +100,16 @@ jobs:
     #     ./Godot.app/Contents/MacOS/Godot -h
 
 
-    - run: echo $GITHUB_WORKSPACE
+    - run: |
+        echo $GITHUB_WORKSPACE
+        ls -la
+
     - uses: actions/checkout@v3
-    - run: echo $GITHUB_WORKSPACE
+
+    - run: |
+        echo $GITHUB_WORKSPACE
+        ls -la
+
 
     # - name: Use Godot from path
     #   run: |
