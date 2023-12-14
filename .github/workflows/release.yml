@@ -84,7 +84,7 @@ jobs:
 
         # decompress
         unzip ${FILENAME}.zip Godot.app/Contents/MacOS/Godot
-        unzip ${EXPORT_TEMPLATES_FILENAME}.tpz macos.zip
+        unzip ${EXPORT_TEMPLATES_FILENAME}.tpz templates/macos.zip
 
         # copy godot executable to a common location
         cp -R ./Godot.app $HOME
