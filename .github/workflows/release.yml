@@ -93,9 +93,9 @@ jobs:
         echo $HOME
         # mkdir -p $HOME/.local/bin
         # echo "$HOME/.local/bin" >> $GITHUB_PATH
-        mkdir -p $HOME/Library/Application Support/Godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
+        mkdir -p "$HOME/Library/Application Support/Godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}"
         cp -R ./Godot.app $HOME
-        cp templates/* $HOME/Library/Application Support/Godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
+        cp templates/macos.zip "$HOME/Library/Application Support/Godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}/macos.zip"
 
         # godot looks here for export template:
         # /Users/runner/Library/Application Support/Godot/export_templates/4.2.stable/macos.zip
