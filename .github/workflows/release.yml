@@ -83,21 +83,24 @@ jobs:
         curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${FILENAME}.zip
 
         # export templates
-        # curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${EXPORT_TEMPLATES_FILENAME}.tpz
+        curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${EXPORT_TEMPLATES_FILENAME}.tpz
 
         # decompress
         unzip ${FILENAME}.zip
-        # unzip ${EXPORT_TEMPLATES_FILENAME}.tpz
+        unzip ${EXPORT_TEMPLATES_FILENAME}.tpz
 
         # add to path
         mkdir -p $HOME/.local/bin
-        # mkdir -p $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
+        mkdir -p $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
         echo "$HOME/.local/bin" >> $GITHUB_PATH
         cp -R ./Godot.app $HOME
-        # cp templates/* $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
+        cp templates/* $HOME/Library/Application Support/Godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
+
+        # godot looks here for export template:
+        # /Users/runner/Library/Application Support/Godot/export_templates/4.2.stable/macos.zip
 
         # test it
-        $HOME/Godot.app/Contents/MacOS/Godot -h
+        # $HOME/Godot.app/Contents/MacOS/Godot -h
 
 
     # - run: |
