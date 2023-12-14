@@ -65,50 +65,53 @@ jobs:
     name: Build for macOS
     runs-on: macos-latest
     steps:
-    - uses: maxim-lobanov/setup-xcode@v1
-      with:
-        xcode-version: latest-stable
+    # - uses: maxim-lobanov/setup-xcode@v1
+    #   with:
+    #     xcode-version: latest-stable
 
-    - name: Download, unzip, and add Godot to path
-      run: |
-        # prepare godot version and platform
-        GODOT_VERSION="4.2-stable"
-        GODOT_EXPORT_TEMPLATES_VERSION="4.2.stable"
-        BUILD_PLATFORM="macos.universal"
-        FILENAME="Godot_v${GODOT_VERSION}_${BUILD_PLATFORM}"
-        EXPORT_TEMPLATES_FILENAME="Godot_v${GODOT_VERSION}_export_templates"
+    # - name: Download, unzip, and add Godot to path
+    #   run: |
+    #     # prepare godot version and platform
+    #     GODOT_VERSION="4.2-stable"
+    #     GODOT_EXPORT_TEMPLATES_VERSION="4.2.stable"
+    #     BUILD_PLATFORM="macos.universal"
+    #     FILENAME="Godot_v${GODOT_VERSION}_${BUILD_PLATFORM}"
+    #     EXPORT_TEMPLATES_FILENAME="Godot_v${GODOT_VERSION}_export_templates"
 
-        # download (later: cache)
-        # godot
-        curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${FILENAME}.zip
+    #     # download (later: cache)
+    #     # godot
+    #     curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${FILENAME}.zip
 
-        # export templates
-        curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${EXPORT_TEMPLATES_FILENAME}.tpz
+    #     # export templates
+    #     curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${EXPORT_TEMPLATES_FILENAME}.tpz
 
-        # decompress
-        unzip ${FILENAME}.zip
-        unzip ${EXPORT_TEMPLATES_FILENAME}.tpz
+    #     # decompress
+    #     unzip ${FILENAME}.zip
+    #     unzip ${EXPORT_TEMPLATES_FILENAME}.tpz
 
-        # add to path
-        mkdir -p $HOME/.local/bin
-        mkdir -p $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
-        echo "$HOME/.local/bin" >> $GITHUB_PATH
-        cp ./Godot.app/Contents/MacOS/Godot $HOME/.local/bin/godot
-        cp templates/* $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
+    #     # add to path
+    #     # mkdir -p $HOME/.local/bin
+    #     # mkdir -p $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
+    #     # echo "$HOME/.local/bin" >> $GITHUB_PATH
+    #     # cp ./Godot.app/Contents/MacOS/Godot $HOME/.local/bin/godot
+    #     # cp templates/* $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
 
-        # test it
-        # godot -h
+    #     # test it
+    #     ./Godot.app/Contents/MacOS/Godot -h
 
+
+    - run: echo $GITHUB_WORKSPACE
     - uses: actions/checkout@v3
+    - run: echo $GITHUB_WORKSPACE
 
-    - name: Use Godot from path
-      run: |
-        mkdir dist
-        ./Godot.app/Contents/MacOS/Godot --headless --export-release mac
-        ls -la dist
+    # - name: Use Godot from path
+    #   run: |
+    #     mkdir dist
+    #     ./Godot.app/Contents/MacOS/Godot --headless --export-release mac
+    #     ls -la dist
 
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: Client - macOS
-        path: dist/worlds_collide.*
+    # - name: Upload Artifact
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: Client - macOS
+    #     path: dist/worlds_collide.*
