@@ -83,26 +83,32 @@ jobs:
         curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${FILENAME}.zip
 
         # export templates
-        # curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${EXPORT_TEMPLATES_FILENAME}.tpz
+        curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${EXPORT_TEMPLATES_FILENAME}.tpz
 
         # decompress
         unzip ${FILENAME}.zip
-        # unzip ${EXPORT_TEMPLATES_FILENAME}.tpz
-
-        # ./Godot.app/Contents/MacOS/Godot -h
+        unzip ${EXPORT_TEMPLATES_FILENAME}.tpz
 
         # add to path
         mkdir -p $HOME/.local/bin
         mkdir -p $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
         echo "$HOME/.local/bin" >> $GITHUB_PATH
         cp ./Godot.app/Contents/MacOS/Godot $HOME/.local/bin/godot
-        # cp templates/* $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
+        cp templates/* $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
 
         # test it
-        godot -h
+        # godot -h
 
-      # - name: Upload Artifact
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: Client - macOS
-      #     path: dist/worlds_collide.*
+    - uses: actions/checkout@v3
+
+    - name: Use Godot from path
+      run: |
+        mkdir dist
+        ./Godot.app/Contents/MacOS/Godot --headless --export-release mac
+        ls -la dist
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Client - macOS
+        path: dist/worlds_collide.*
