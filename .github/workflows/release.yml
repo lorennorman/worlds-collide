@@ -8,57 +8,57 @@ on:
   pull_request: {}
 
 jobs:
-  # build_game_linux_and_windows:
-  #   name: Build for Linux & Windows
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       platform: [ windows, linux ]
-  #   steps:
-  #   - name: Download, unzip, and add Godot to path
-  #     run: |
-  #       # prepare godot version and platform
-  #       GODOT_VERSION="4.2-stable"
-  #       GODOT_EXPORT_TEMPLATES_VERSION="4.2.stable"
-  #       BUILD_PLATFORM="linux.x86_64"
-  #       FILENAME="Godot_v${GODOT_VERSION}_${BUILD_PLATFORM}"
-  #       EXPORT_TEMPLATES_FILENAME="Godot_v${GODOT_VERSION}_export_templates"
+  build_game_linux_and_windows:
+    name: Build for Linux & Windows
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [ windows, linux ]
+    steps:
+    - name: Download, unzip, and add Godot to path
+      run: |
+        # prepare godot version and platform
+        GODOT_VERSION="4.2-stable"
+        GODOT_EXPORT_TEMPLATES_VERSION="4.2.stable"
+        BUILD_PLATFORM="linux.x86_64"
+        FILENAME="Godot_v${GODOT_VERSION}_${BUILD_PLATFORM}"
+        EXPORT_TEMPLATES_FILENAME="Godot_v${GODOT_VERSION}_export_templates"
 
-  #       # download (later: cache)
-  #       # godot
-  #       curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${FILENAME}.zip
+        # download (later: cache)
+        # godot
+        curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${FILENAME}.zip
 
-  #       # export templates
-  #       curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${EXPORT_TEMPLATES_FILENAME}.tpz
+        # export templates
+        curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${EXPORT_TEMPLATES_FILENAME}.tpz
 
-  #       # decompress
-  #       unzip ${FILENAME}.zip
-  #       unzip ${EXPORT_TEMPLATES_FILENAME}.tpz
-  #       ls -la templates
+        # decompress
+        unzip ${FILENAME}.zip
+        unzip ${EXPORT_TEMPLATES_FILENAME}.tpz
+        ls -la templates
 
-  #       # add to path
-  #       mkdir -p $HOME/.local/bin
-  #       mkdir -p $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
-  #       echo "$HOME/.local/bin" >> $GITHUB_PATH
-  #       cp ${FILENAME} $HOME/.local/bin/godot
-  #       cp templates/* $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
+        # add to path
+        mkdir -p $HOME/.local/bin
+        mkdir -p $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+        cp ${FILENAME} $HOME/.local/bin/godot
+        cp templates/* $HOME/.local/share/godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}
 
-  #       # test it
-  #       # godot -h
+        # test it
+        # godot -h
 
-  #   - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-  #   - name: Use Godot from path
-  #     run: |
-  #       mkdir dist
-  #       godot --headless --export-release ${{ matrix.platform }}
-  #       ls -la dist
+    - name: Use Godot from path
+      run: |
+        mkdir dist
+        godot --headless --export-release ${{ matrix.platform }}
+        ls -la dist
 
-  #   - name: Upload Artifact
-  #     uses: actions/upload-artifact@v3
-  #     with:
-  #       name: Client - ${{ matrix.platform }}
-  #       path: dist/worlds_collide.*
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Client - ${{ matrix.platform }}
+        path: dist/worlds_collide.*
 
 
   build_game_macos:
@@ -107,13 +107,12 @@ jobs:
         cp templates/macos.zip "$HOME/Library/Application Support/Godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}/macos.zip"
 
         # test it
-        godot -h
+        # godot -h
 
     - uses: actions/checkout@v4
 
     - name: Use Godot.app
       run: |
-        echo $PATH
         export PATH=$PATH:$HOME/.local/bin
         mkdir dist
         godot --headless --export-release mac
