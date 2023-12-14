@@ -96,11 +96,10 @@ jobs:
 
         # copy godot executable to a common location
         mkdir -p $HOME/.local/bin
-        echo "$HOME/.local/bin" >> $GITHUB_PATH
-        cp ./Godot.app/Contents/MacOS/Godot $HOME/.local/bin/godot
-        ls $HOME/.local/bin
         echo $PATH
-        echo $GITHUB_PATH
+        export PATH=$PATH:$HOME/.local/bin
+        echo $PATH
+        cp ./Godot.app/Contents/MacOS/Godot $HOME/.local/bin/godot
 
         # cp -R ./Godot.app $HOME
 
@@ -109,7 +108,7 @@ jobs:
         # cp templates/macos.zip "$HOME/Library/Application Support/Godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}/macos.zip"
 
         # test it
-        $HOME/.local/bin/godot -h
+        godot -h
 
     # - uses: actions/checkout@v4
 
