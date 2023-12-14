@@ -70,7 +70,9 @@ jobs:
       id: cache-godot-mac
       uses: actions/cache@v3
       with:
-        path: [ $HOME/Godot.app, "$HOME/Library/Application Support/Godot/export_templates/4.2.stable/macos.zip" ]
+        path: |
+          $HOME/Godot.app
+          "$HOME/Library/Application Support/Godot/export_templates/4.2.stable/macos.zip"
         key: ${{ runner.os }}-godot
 
     - name: Download, unzip, and add Godot to path
