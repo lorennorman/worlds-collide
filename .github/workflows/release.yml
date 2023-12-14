@@ -71,6 +71,7 @@ jobs:
 
     - name: Download, unzip, and add Godot to path
       run: |
+        cd $HOME
         # prepare godot version and platform
         GODOT_VERSION="4.2-stable"
         GODOT_EXPORT_TEMPLATES_VERSION="4.2.stable"
@@ -101,15 +102,13 @@ jobs:
 
 
     - run: |
-        echo $GITHUB_WORKSPACE
+        pwd
         ls -la
 
     - uses: actions/checkout@v4
-      with:
-        clean: false
 
     - run: |
-        echo $GITHUB_WORKSPACE
+        pwd
         ls -la
 
 
