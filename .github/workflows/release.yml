@@ -66,7 +66,15 @@ jobs:
     runs-on: macos-latest
     steps:
 
+    - name: Cache Godot & Templates
+      id: cache-godot-mac
+      uses: actions/cache@v3
+      with:
+        path: [ $HOME/Godot.app, "$HOME/Library/Application Support/Godot/export_templates/4.2.stable/macos.zip" ]
+        key: ${{ runner.os }}-godot
+
     - name: Download, unzip, and add Godot to path
+      if: steps.cache-godot-mac.outputs.cache-hit != 'true'
       run: |
         # prepare godot version and platform
         GODOT_VERSION="4.2-stable"
