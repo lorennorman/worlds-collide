@@ -70,9 +70,7 @@ jobs:
       id: cache-godot-mac
       uses: actions/cache@v3
       with:
-        path: |
-          $HOME/Godot.app
-          "$HOME/Library/Application Support/Godot/export_templates/4.2.stable/macos.zip"
+        path: $HOME/.local/bin/godot
         key: ${{ runner.os }}-godot
 
     - name: Download, unzip, and add Godot to path
@@ -85,7 +83,7 @@ jobs:
         FILENAME="Godot_v${GODOT_VERSION}_${BUILD_PLATFORM}"
         EXPORT_TEMPLATES_FILENAME="Godot_v${GODOT_VERSION}_export_templates"
 
-        # download (later: cache)
+        # download
         # godot
         curl -LO https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/${FILENAME}.zip
 
@@ -97,22 +95,26 @@ jobs:
         unzip ${EXPORT_TEMPLATES_FILENAME}.tpz templates/macos.zip
 
         # copy godot executable to a common location
-        cp -R ./Godot.app $HOME
+        mkdir -p $HOME/.local/bin
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+        cp ./Godot.app/Contents/MacOS/Godot $HOME/.local/bin/godot
+
+        # cp -R ./Godot.app $HOME
 
         # make the templates dir and copy the ones we need there
         mkdir -p "$HOME/Library/Application Support/Godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}"
         cp templates/macos.zip "$HOME/Library/Application Support/Godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}/macos.zip"
 
         # test it
-        $HOME/Godot.app/Contents/MacOS/Godot -h
+        godot -h
 
     - uses: actions/checkout@v4
 
     - name: Use Godot.app
       run: |
         mkdir dist
-        $HOME/Godot.app/Contents/MacOS/Godot --headless --export-release mac
-        ls -la dist
+        # $HOME/Godot.app/Contents/MacOS/Godot --headless --export-release mac
+        godot --headless --export-release mac
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
