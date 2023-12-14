@@ -70,7 +70,7 @@ jobs:
       id: cache-godot-mac
       uses: actions/cache@v3
       with:
-        path: $HOME/.local/bin/godot
+        path: ~/.local/bin/godot
         key: ${{ runner.os }}-godot
 
     - name: Download, unzip, and add Godot to path
@@ -100,8 +100,6 @@ jobs:
         export PATH=$PATH:$HOME/.local/bin
         echo $PATH
         cp ./Godot.app/Contents/MacOS/Godot $HOME/.local/bin/godot
-
-        # cp -R ./Godot.app $HOME
 
         # make the templates dir and copy the ones we need there
         # mkdir -p "$HOME/Library/Application Support/Godot/export_templates/${GODOT_EXPORT_TEMPLATES_VERSION}"
