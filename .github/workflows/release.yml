@@ -99,9 +99,7 @@ jobs:
 
         # copy godot executable to a common location
         mkdir -p $HOME/.local/bin
-        echo $PATH
         export PATH=$PATH:$HOME/.local/bin
-        echo $PATH
         cp ./Godot.app/Contents/MacOS/Godot $HOME/.local/bin/godot
 
         # make the templates dir and copy the ones we need there
@@ -115,6 +113,8 @@ jobs:
 
     - name: Use Godot.app
       run: |
+        echo $PATH
+        export PATH=$PATH:$HOME/.local/bin
         mkdir dist
         godot --headless --export-release mac
 
