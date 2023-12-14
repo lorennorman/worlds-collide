@@ -104,7 +104,9 @@ jobs:
         echo $GITHUB_WORKSPACE
         ls -la
 
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+      with:
+        clean: false
 
     - run: |
         echo $GITHUB_WORKSPACE
