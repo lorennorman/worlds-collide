@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        platform: [ windows, linux ]
+        platform: [ windows, linux, web ]
     steps:
     - name: Download, unzip, and add Godot to path
       run: |
