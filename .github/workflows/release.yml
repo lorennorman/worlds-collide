@@ -50,7 +50,7 @@ jobs:
 
     - name: Use Godot from path
       run: |
-        mkdir dist
+        mkdir -p dist/web
         godot --headless --export-release ${{ matrix.platform }}
         ls -la dist
 
